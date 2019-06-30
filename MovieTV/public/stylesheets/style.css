@@ -1,0 +1,21 @@
+body {
+    background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
+    color: white;
+}
+
+.navbar {
+    background-color:black;
+}
+
+.card-translucent-custom {
+    background-color: rgba(255,255,255,0.8);
+    color: black;
+}
+
+.login-signup-page {
+    background-image:url("/images/bgimage.jpg");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 100%;
+}

@@ -1,0 +1,26 @@
+<% include ./partials/header %>
+<div class="ui main text container">
+    <div class="ui huge header">RESTful event App</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            <% events.forEach(function(event){ %>
+                <div class="item">
+                    <div class="content">
+                        <a class="header" href="/events/<%=event._id%>"><%=event.title%></a>
+                        <div class="meta">
+                            <span><%=event.created.toDateString()%></span>
+                        </div>
+                        <div class"extra">
+                            <a class="ui floated basic violet button" href="/events/<%=event._id%>">
+                                Read More
+                                <i class="right chevron icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>

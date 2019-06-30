@@ -1,0 +1,61 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <a href="/movies"><span style="font-size: 1.5em; color: white;"><i class="fas fa-arrow-circle-left mr-2"></i></span></a>
+    <section class="container-fluid px-0 mb-5">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <img src="https://image.tmdb.org/t/p/w300<%=movie[0].poster_path%>" class="img-fluid shadow-lg">
+            </div>
+            <div class="col-lg-8">
+                <h3><%=movie[0].title%></h3>
+                <p><%=movie[0].year%></p>
+                <p><%=movie[0].genre%></p>
+                
+                <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fas fa-scroll mr-2"></i></span><%=movie[0].overview%></p>
+                <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fas fa-user-check mr-2"></i></span><%=movie[0].director%></p>
+                <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fas fa-language mr-2"></i></span><%=movie[0].language%></p>
+                <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fab fa-imdb mr-2"></i></span><%=movie[0].imdbRating%><span style="font-size: 0.9em;"><i class="fas fa-star ml-1"></i></span></p>
+                <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fas fa-hand-holding-usd mr-2"></i></span><%=(new Intl.NumberFormat()).format(movie[0].revenue)%> $</p>
+                <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fas fa-clock mr-2"></i></span><%=movie[0].runtime%> mins</p>
+                <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fas fa-trophy mr-2"></i></span><%=movie[0].awards%></p>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <h4>Reviews and Ratings</h4>
+        <div class="container">
+            <div class="col-lg-6">
+                <form action="/movies/<%=movie[0].imdb_id%>" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="review" placeholder="enter movie review">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="rating">
+                                <option selected value="">Select Rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-secondary">Add Review</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <% reviews.forEach(function(review){ %>
+                <p>
+                    <strong><%=review.username%>:</strong> <%=review.rating%><i class="far fa-star"></i> | <%=review.review%> 
+                </p>
+            <% }); %>
+        </div>
+    </section>
+</div>
+<% include ../partials/footer %>

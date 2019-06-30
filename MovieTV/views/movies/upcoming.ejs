@@ -1,0 +1,19 @@
+<% include ../partials/header %>
+<div class="container">
+    <section>
+    <a href="/movies"><span style="font-size: 1.5em; color: white;"><i class="fas fa-arrow-circle-left mr-2"></i></span></a>
+        <% movies.forEach(function(movie){ %>
+            <div class="d-flex row align-items-center mt-5">
+                <div class="col-lg-3">
+                    <img src="https://image.tmdb.org/t/p/w300<%=movie.poster_path%>" class="img-fluid shadow-lg">
+                </div>
+                <div class="col-lg-9">
+                    <h3><%=movie.title%></h3>
+                    <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="fas fa-scroll mr-2"></i></span><%=movie.overview%></p>
+                    <p class="d-flex align-items-center"><span style="font-size: 1.5em;"><i class="far fa-calendar-alt mr-2"></i></span><%=movie.release_date%></p>
+                </div>
+            </div>
+        <% }); %>
+    </section>
+</div>
+<% include ../partials/footer %>

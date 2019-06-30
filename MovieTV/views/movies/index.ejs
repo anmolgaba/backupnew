@@ -1,0 +1,92 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <h3>Movie Library</h3>
+    <a class="btn btn-primary" href="/movies/upcoming" role="button">Upcoming Movies</a>
+    <section class="mb-5 mt-5">
+        <div class="container col-lg-6">
+            <form action="/movies" method="GET">
+                <div class="d-flex form-row justify-content-between">
+                    <div class="form-group">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sort By
+                            </button>
+                            <div class="dropdown-menu form-group" aria-labelledby="dropdownMenu2">
+                                <button class="dropdown-item form-control" name="order" value="entertain_entry.title asc" type="submit">Alphabetical</button>
+                                <button class="dropdown-item form-control" name="order" value="entertain_entry.imdbRating desc" type="submit">IMDb Rating</button>
+                                <button class="dropdown-item form-control" name="order" value="entertain_entry.runtime asc" type="submit">Runtime (Asc)</button>
+                                <button class="dropdown-item form-control" name="order" value="entertain_entry.runtime desc" type="submit">Runtime (Desc)</button>
+                                <button class="dropdown-item form-control" type="submit">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-group">
+                        <select class="form-control" name="rating" id="exampleFormControlSelect1">
+                          <option selected value="0">Rating filter</option>
+                          <option value="1">1+</option>
+                          <option value="2">2+</option>
+                          <option value="3">3+</option>
+                          <option value="4">4+</option>
+                          <option value="5">5+</option>
+                          <option value="6">6+</option>
+                          <option value="7">7+</option>
+                          <option value="8">8+</option>
+                          <option value="9">9+</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-group">
+                        <select class="form-control" name="genre" id="exampleFormControlSelect2">
+                            <option selected value="">Genre Filter</option>
+                            <option value="Action">Action</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Crime">Crime</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Documentary">Documentary</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Romantic">Romantic</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Thriller">Thriller</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Filter</button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex container justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">
+                            Movies
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="/tvshows">TV Shows</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="row d-flex">
+            <% movies.forEach(function(movie){ %>
+                <div class="d-flex col-8 col-sm-4 col-md-3 col-lg-2 mb-3 justify-content-between justify-content-sm-center">
+                    <div>
+                        <img src="https://image.tmdb.org/t/p/w300<%=movie.poster_path%>" class="img-fluid shadow-lg">
+                        <div>
+                            <a href="/movies/<%=movie.imdb_id%>" class="text-reset d-inline-block text-truncate small font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="<%=movie.title%>" style="max-width: 150px;"><%=movie.title%></a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </section>
+</div>
+
+<% include ../partials/footer %>
